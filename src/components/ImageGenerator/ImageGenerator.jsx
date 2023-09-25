@@ -1,14 +1,18 @@
 import React, { useRef, useState } from "react";
 import './imagegenerator.css';
-import default_img from '../assets/default_image.svg'
+import default_img from '../assets/default_image.svg';
+
+
+
 
 const ImageGenerator = () => {
-
     const [image_url,setImage_url] = useState("/");
     let inputRef = useRef(null);
     const [loading, setLoading] = useState(false);
 
+
     const imageGenerator = async () =>{
+
         if (inputRef.current.value==="") {
             return 0;
         }
@@ -20,7 +24,7 @@ const ImageGenerator = () => {
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:
-                    "Bearer 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", //need to add to env
+                    `Bearer ${process.env.REACT_APP_API_KEY}`, //need to add to env
                     "User-Agent":"Chrome"
                 },
                 body:JSON.stringify({
